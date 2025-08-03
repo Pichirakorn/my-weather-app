@@ -7,7 +7,29 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    transition: background 1s ease-in-out;
 }
+
+body.day {
+    background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+    color: #333;
+}
+
+body.night {
+    background: linear-gradient(to bottom, #102030, #304050);
+    color: #E0E1DD;
+}
+
+body.hot {
+    background: linear-gradient(to bottom, #FF8C00, #FFD700);
+    color: #333;
+}
+
+body.cold {
+    background: linear-gradient(to bottom, #ADD8E6, #B0C4DE);
+    color: #333;
+}
+
 .app-container {
     background: #003554;
     padding: 2rem;
@@ -16,20 +38,85 @@ body {
     width: 90%;
     max-width: 400px;
     text-align: center;
+    animation: fadeIn 1s ease-out;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 h1 { color: #00A6FB; }
+
 #search-form { display: flex; gap: 0.5rem; margin: 1.5rem 0; }
+
 #city-input {
     flex-grow: 1; padding: 0.75rem; border: 1px solid #006494;
     border-radius: 0.5rem; background: #051923; color: #E0E1DD;
     font-size: 1rem;
 }
+
 #search-form button {
     padding: 0.75rem 1rem; background-color: #00A6FB; color: #051923;
     border: none; border-radius: 0.5rem; font-size: 1rem; font-weight: bold;
     cursor: pointer; transition: background-color 0.2s;
 }
+
 #search-form button:hover { background-color: #0582CA; }
 .weather-info { margin-top: 1.5rem; min-height: 150px; }
 .weather-info .temp { font-size: 3rem; font-weight: bold; margin: 0.5rem 0; }
 .error { color: #ff4d4d; font-weight: bold; }
+
+.weather-info > * {
+    animation: slideIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.forecast-info {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(224, 225, 221, 0.2);
+    text-align: left;
+}
+
+.forecast-info h2 {
+    color: #00A6FB;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.forecast-day {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed rgba(224, 225, 221, 0.1);
+}
+
+.forecast-day:last-child {
+    border-bottom: none;
+}
+
+.forecast-day img {
+    width: 40px;
+    height: 40px;
+}
+
+.forecast-day .day-details {
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.forecast-day .day-details p {
+    margin: 0.2rem 0;
+}
+
+.forecast-day .temp-range {
+    font-weight: bold;
+    white-space: nowrap;
+}
