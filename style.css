@@ -7,7 +7,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    transition: background 1s ease-in-out;
+    transition: background 1s ease-in-out, color 1s ease-in-out;
 }
 
 body.day {
@@ -31,7 +31,7 @@ body.cold {
 }
 
 .app-container {
-    background: #003554;
+    background: #003554; /* Default dark container background */
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -39,6 +39,15 @@ body.cold {
     max-width: 400px;
     text-align: center;
     animation: fadeIn 1s ease-out;
+    transition: background 1s ease-in-out, color 1s ease-in-out; /* Add color transition */
+}
+
+body.day .app-container,
+body.hot .app-container,
+body.cold .app-container {
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white for light themes */
+    color: #333; /* Dark text for light container */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes fadeIn {
@@ -48,12 +57,27 @@ body.cold {
 
 h1 { color: #00A6FB; }
 
+body.day h1,
+body.hot h1,
+body.cold h1 {
+    color: #0582CA; /* A darker blue for contrast */
+}
+
 #search-form { display: flex; gap: 0.5rem; margin: 1.5rem 0; }
 
 #city-input {
     flex-grow: 1; padding: 0.75rem; border: 1px solid #006494;
     border-radius: 0.5rem; background: #051923; color: #E0E1DD;
     font-size: 1rem;
+    transition: background 1s ease-in-out, color 1s ease-in-out, border-color 1s ease-in-out;
+}
+
+body.day #city-input,
+body.hot #city-input,
+body.cold #city-input {
+    background: #F0F0F0;
+    color: #333;
+    border-color: #A0A0A0;
 }
 
 #search-form button {
